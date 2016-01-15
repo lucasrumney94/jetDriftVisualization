@@ -5,7 +5,7 @@ public class SpectrumReactor : MonoBehaviour
 {
     private GameObject listenToMe;
     // array of float values we will store the spectrum information in.     
-    float[] Samples = new float[8192];
+    public float[] Samples = new float[8192];
     //temp storage
     float Sum = 0.0f;
     float R = 0.0f;
@@ -38,8 +38,11 @@ public class SpectrumReactor : MonoBehaviour
     void Start()
     {
         Timer = Interval;
-        this.gameObject.AddComponent<Renderer>();
-        gameObject.GetComponent<Renderer>().material = new Material(Shader.Find("Unlit/Color"));
+        if (colorMe)
+        {
+            this.gameObject.AddComponent<Renderer>();
+            gameObject.GetComponent<Renderer>().material = new Material(Shader.Find("Unlit/Color"));
+        }
         listenToMe = this.gameObject;
     }
 
