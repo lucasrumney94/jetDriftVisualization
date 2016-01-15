@@ -7,7 +7,7 @@ public class waveGenerator : MonoBehaviour {
 
     public float sampleRate = 20.0f;
     public float freq = 1.0f;
-    public float A = 1.0f;
+    public float Amplitude = 1.0f;
 
     private int j = 0;
 
@@ -16,7 +16,7 @@ public class waveGenerator : MonoBehaviour {
     {
         for (int i = 0; i < Samples.Length; i++)
         {
-            Samples[i] = A*Mathf.Cos(2 * Mathf.PI * i * freq / sampleRate);
+            Samples[i] = Amplitude*Mathf.Cos(2 * Mathf.PI * i * freq / sampleRate);
             //Debug.Log(Samples[i]);
         }
        
@@ -29,7 +29,7 @@ public class waveGenerator : MonoBehaviour {
         
         for (int i = 0; i < Samples.Length; i++)
         {
-            Samples[i] = Mathf.Cos(2 * Mathf.PI * i / sampleRate + (j * Mathf.PI / sampleRate));
+            Samples[i] = Mathf.Abs(Amplitude * Mathf.Cos((2 * Mathf.PI * i * freq) / sampleRate + (j * Mathf.PI / sampleRate)));
             //Debug.Log(Samples[i]);
         }
         j++;

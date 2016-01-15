@@ -5,7 +5,8 @@ using System.Collections;
 public class DeformSphere : MonoBehaviour {
 
     public int displacementFactor = 1000;
-    public SpectrumReactor spectrum;
+    public waveGenerator spectrum;
+    public bool originalSet = false;
 
     private float[] averagedSamples;
     private Vector3[] originalVertexPositions;
@@ -16,7 +17,11 @@ public class DeformSphere : MonoBehaviour {
     {
         mesh = GetComponent<MeshFilter>().mesh;
         verts = mesh.vertices;
-        originalVertexPositions = verts;
+        originalVertexPositions = new Vector3[verts.Length];
+        for(int i = 0; i < verts.Length; i++)
+        {
+            originalVertexPositions[i] = verts[i];
+        }
     }
 
     void Update()
@@ -26,20 +31,20 @@ public class DeformSphere : MonoBehaviour {
         mesh.vertices = verts;
     }
 
-    void OnDrawGizmos()
-    {
-        mesh = GetComponent<MeshFilter>().sharedMesh;
-        verts = mesh.vertices;
+    //void OnDrawGizmos()
+    //{
+    //    mesh = GetComponent<MeshFilter>().sharedMesh;
+    //    verts = mesh.vertices;
 
-        for (int i = 1; i < verts.Length; i++)
-        {
-            Gizmos.color = new Color(1f, (float)i / verts.Length, (float)i / verts.Length);
-            Gizmos.DrawSphere(verts[i], 0.02f);
-            Gizmos.DrawLine(verts[i], verts[i - 1]);
-        }
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(verts[0], 0.02f);
-    }
+    //    for (int i = 1; i < verts.Length; i++)
+    //    {
+    //        Gizmos.color = new Color(1f, (float)i / verts.Length, (float)i / verts.Length);
+    //        Gizmos.DrawSphere(verts[i], 0.02f);
+    //        Gizmos.DrawLine(verts[i], verts[i - 1]);
+    //    }
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawSphere(verts[0], 0.02f);
+    //}
 
     private float[] DownsampleList(float[] values, int newLength)
     {
