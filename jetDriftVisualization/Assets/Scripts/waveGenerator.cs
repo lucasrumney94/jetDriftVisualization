@@ -6,19 +6,22 @@ public class waveGenerator : MonoBehaviour {
     public float[] Samples = new float[100];
 
 
-    public float sampleRate = 20.0f;
 
     public bool travelingWave = true;
     public float freq = 1.0f;
     public float Amplitude = 1.0f;
+    public float sampleRate = 20.0f;
 
     public bool multiCos;
     public float mC1Freq = 20.0f;
     public float mC1Amplitude = 1.0f;
+    public float mc1SR = 20.0f;
     public float mC2Freq = 20.0f;
     public float mC2Amplitude = 1.0f;
+    public float mc2SR = 20.0f;
     public float mC3Freq = 20.0f;
     public float mC3Amplitude = 1.0f;
+    public float mc3SR = 20.0f;
 
     public bool pulse = false;
     public float pulseAmplitude = 1.0f;
@@ -63,7 +66,7 @@ public class waveGenerator : MonoBehaviour {
         {
             for (int i = 0; i < Samples.Length; i++)
             {
-                Samples[i] = Mathf.Abs(mC1Amplitude * Mathf.Cos(2 * Mathf.PI * i * mC1Freq + (j * Mathf.PI / sampleRate)) + mC2Amplitude * Mathf.Cos(2 * Mathf.PI * i * mC2Freq + (j * Mathf.PI / sampleRate)) + mC3Amplitude * Mathf.Cos(2 * Mathf.PI * i * mC3Freq + (j * Mathf.PI / sampleRate)));
+                Samples[i] = Mathf.Abs(mC1Amplitude * Mathf.Cos(2 * Mathf.PI * i * mC1Freq + (j * Mathf.PI / mc1SR)) + mC2Amplitude * Mathf.Cos(2 * Mathf.PI * i * mC2Freq + (j * Mathf.PI / mc2SR)) + mC3Amplitude * Mathf.Cos(2 * Mathf.PI * i * mC3Freq + (j * Mathf.PI / mc3SR)));
                 //Debug.Log(Samples[i]);
             }
             j++;
