@@ -8952,7 +8952,7 @@ GameObject:
   - 114: {fileID: 2065668831}
   m_Layer: 0
   m_Name: AudioAnalyzer
-  m_TagString: Untagged
+  m_TagString: AudioAnalyzer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
