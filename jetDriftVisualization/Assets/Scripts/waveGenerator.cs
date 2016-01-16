@@ -3,7 +3,7 @@ using System.Collections;
 
 public class waveGenerator : MonoBehaviour {
 
-    public float[] Samples = new float[100];
+    public float[] Samples = new float[1024];
 
 
 
@@ -26,6 +26,7 @@ public class waveGenerator : MonoBehaviour {
     public bool pulse = false;
     public float pulseAmplitude = 1.0f;
     public float pulseDecay = 0.7f;
+    public int pulseTailLength = 50;
 
     private int j = 0;
 
@@ -82,9 +83,9 @@ public class waveGenerator : MonoBehaviour {
                 Samples[i] = 0;
                 if (i == j)
                     Samples[i] = pulseAmplitude;
-                if (j > 15)
+                if (j > pulseTailLength)
                 {
-                    for (int k = 1; k < 15; k++)
+                    for (int k = 1; k < pulseTailLength; k++)
                     {
                         Samples[j - k] = pulseAmplitude*Mathf.Pow(pulseDecay, j - k);
                         
