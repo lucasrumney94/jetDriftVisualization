@@ -9,8 +9,18 @@ public class sphereSpiral : MonoBehaviour {
     public const int numberOfSpheres = 512;
 
     public GameObject spiralSphere;
+    public bool goldenRatio = true;
+    public bool e = false;
+    public bool sqrt2 = false;
+    public bool sqrt3 = false;
+    public bool pi = false;
+    public bool sqrt7 = false;
+    public bool other = false;
+    public float otherNum = 0.0f;
+    public bool flange = false;
+    public float flangeAmount = 0.01f;
 
-    private float goldenAngle = Mathf.PI * (3 - Mathf.Sqrt(5));
+    private float seedAngle = 0.0f;// Mathf.Sqrt(2);//Mathf.PI * (3 - Mathf.Sqrt(5));
 
     private Vector3[] positions = new Vector3[numberOfSpheres];
 
@@ -25,10 +35,28 @@ public class sphereSpiral : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        if (goldenRatio)
+            seedAngle = Mathf.PI * (3 - Mathf.Sqrt(5));
+        if (sqrt2)
+            seedAngle = Mathf.Sqrt(2);
+        if (sqrt3)
+            seedAngle = Mathf.Sqrt(3);
+        if (pi)
+            seedAngle = Mathf.PI;
+        if (sqrt7)
+            seedAngle = Mathf.Sqrt(7);
+        if (e)
+            seedAngle = Mathf.Exp(1);
+        if (other)
+            seedAngle = otherNum;
+        if (flange)
+            seedAngle = Mathf.Sin(2 * Mathf.PI * Time.time * flangeAmount);
+
+
         waveGen = this.gameObject.GetComponent<waveGenerator>();
         for (int i = 0; i < numberOfSpheres; i++)
         {
-            theta = i * goldenAngle;
+            theta = i * seedAngle;
             r = Mathf.Sqrt(i) / Mathf.Sqrt(numberOfSpheres);
             y = (float)libSVM.Numpy.LinSpace(1 - 1 / numberOfSpheres, 1/ numberOfSpheres - 1, numberOfSpheres).ElementAt<double>(i);
             radius = Mathf.Sqrt(1 - y * y);
@@ -43,9 +71,26 @@ public class sphereSpiral : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (goldenRatio)
+            seedAngle = Mathf.PI * (3 - Mathf.Sqrt(5));
+        if (sqrt2)
+            seedAngle = Mathf.Sqrt(2);
+        if (sqrt3)
+            seedAngle = Mathf.Sqrt(3);
+        if (pi)
+            seedAngle = Mathf.PI;
+        if (sqrt7)
+            seedAngle = Mathf.Sqrt(7);
+        if (e)
+            seedAngle = Mathf.Exp(1);
+        if (other)
+            seedAngle = otherNum;
+        if (flange)
+            seedAngle = Mathf.Sin(2 * Mathf.PI * Time.time * flangeAmount);
+
         for (int i = 0; i < numberOfSpheres; i++)
         {
-            theta = i * goldenAngle;
+            theta = i * seedAngle;
             r = Mathf.Sqrt(i) / Mathf.Sqrt(numberOfSpheres);
             y = (float)libSVM.Numpy.LinSpace(1 - 1 / numberOfSpheres, 1 / numberOfSpheres - 1, numberOfSpheres).ElementAt<double>(i);
             radius = Mathf.Sqrt(1 - y * y);
