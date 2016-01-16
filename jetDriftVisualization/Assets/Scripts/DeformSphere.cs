@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
 public class DeformSphere : MonoBehaviour {
 
-    public int displacementFactor = 1000;
+    public float displacementFactor = 1000;
     public waveGenerator spectrum;
     public bool originalSet = false;
 
@@ -39,7 +39,7 @@ public class DeformSphere : MonoBehaviour {
         }
         else if(spectrum.Samples.Length < verts.Length)
         {
-            rescaledSamples = UpsampleList(spectrum.Samples, verts.Length);
+            rescaledSamples = UpFillList(spectrum.Samples, verts.Length);
         }
         SlideVerticies();
         mesh.vertices = verts;
@@ -88,8 +88,9 @@ public class DeformSphere : MonoBehaviour {
         float[] newList = new float[newLength];
 
         //Determine scale factor
-        int scaleFactor = newLength / values.Length;
+        int scaleFactor = (int)Mathf.Floor((float)newLength / values.Length);
 
+        newList[0] = values[0];
         //Interpolate between samples to form new list
         for(int i = 1, n = 1; i < values.Length && n < newLength; i += scaleFactor, n++)
         {
@@ -102,6 +103,22 @@ public class DeformSphere : MonoBehaviour {
                 float iPos = (float)i / (newLength - 1);
                 iPos -= n0Pos;
                 newList[i] = iPos * slope + values[i - 1];
+            }
+        }
+        newList[newList.Length - 1] = values[values.Length - 1];
+
+        return newList;
+    }
+
+    private float[] UpFillList(float[] values, int newLength)
+    {
+        float[] newList = new float[newLength];
+
+        for(int i = 0; i < newLength; i += values.Length)
+        {
+            for(int n = 0; i + n < newLength && n < values.Length; n++)
+            {
+                newList[i + n] = values[n];
             }
         }
 

@@ -214,9 +214,9 @@ MonoBehaviour:
   - 0
   - 0
   travelingWave: 1
-  freq: .0399999991
+  freq: .400000006
   Amplitude: .25
-  sampleRate: 20
+  sampleRate: 100
   multiCos: 0
   mC1Freq: 20
   mC1Amplitude: 1

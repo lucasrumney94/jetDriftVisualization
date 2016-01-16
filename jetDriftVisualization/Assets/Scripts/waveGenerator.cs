@@ -55,7 +55,7 @@ public class waveGenerator : MonoBehaviour {
         {
             for (int i = 0; i < Samples.Length; i++)
             {
-                Samples[i] = Mathf.Abs(Amplitude * Mathf.Cos((2 * Mathf.PI * i * freq) / sampleRate + (j * Mathf.PI / sampleRate)));
+                Samples[i] = Amplitude * Mathf.Cos((2 * Mathf.PI * i * freq) / sampleRate + (j * Mathf.PI / sampleRate));
                 //Debug.Log(Samples[i]);
             }
             j++;
