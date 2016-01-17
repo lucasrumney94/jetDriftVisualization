@@ -5,7 +5,7 @@ public class SpectrumReactor : MonoBehaviour
 {
     private GameObject listenToMe;
     // array of float values we will store the spectrum information in.     
-    public float[] Samples = new float[8192];
+    public float[] Samples = new float[64];
     //temp storage
     float Sum = 0.0f;
     float R = 0.0f;
@@ -48,6 +48,7 @@ public class SpectrumReactor : MonoBehaviour
 
     void Update()
     {
+        
         //Debug.Log(new Vector3(R, G, B));
         Timer -= Time.deltaTime;
 
@@ -55,8 +56,8 @@ public class SpectrumReactor : MonoBehaviour
         {
             //reset timer to interval
             Timer = Interval;
-
-            Samples = listenToMe.GetComponent<AudioSource>().GetSpectrumData((int)Mathf.Pow(2, powerOfTwoSamples), 0, FFTWindow.BlackmanHarris);// AudioListener.GetSpectrumData((int)Mathf.Pow(2,powerOfTwoSamples), 0, FFTWindow.BlackmanHarris);
+            Samples = listenToMe.GetComponent<AudioSource>().GetSpectrumData((int)Mathf.Pow(2, powerOfTwoSamples), 0, FFTWindow.BlackmanHarris);
+            // AudioListener.GetSpectrumData((int)Mathf.Pow(2,powerOfTwoSamples), 0, FFTWindow.BlackmanHarris);
             //listenToMe.GetComponent<AudioSource>().GetSpectrumData(Samples, 0, FFTWindow.BlackmanHarris);
 
             if (myIndexHigh != 0)
