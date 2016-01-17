@@ -8,25 +8,25 @@ public class waveGenerator : MonoBehaviour {
 
 
     public bool travelingWave = true;
-    public float freq = 1.0f;
-    public float Amplitude = 1.0f;
-    public float sampleRate = 20.0f;
+    public float freq = .4f;
+    public float Amplitude = .1f;
+    public float sampleRate = 500.0f;
 
     public bool multiCos;
     public float mC1Freq = 20.0f;
-    public float mC1Amplitude = 1.0f;
-    public float mc1SR = 20.0f;
-    public float mC2Freq = 20.0f;
-    public float mC2Amplitude = 1.0f;
-    public float mc2SR = 20.0f;
-    public float mC3Freq = 20.0f;
-    public float mC3Amplitude = 1.0f;
-    public float mc3SR = 20.0f;
+    public float mC1Amplitude = .05f;
+    public float mc1SR = 500.0f;
+    public float mC2Freq = 57.83f;
+    public float mC2Amplitude = .05f;
+    public float mc2SR = 500.0f;
+    public float mC3Freq = 90.333f;
+    public float mC3Amplitude = .05f;
+    public float mc3SR = 500.0f;
 
     public bool pulse = false;
-    public float pulseAmplitude = 1.0f;
-    public float pulseDecay = 0.7f;
-    public int pulseTailLength = 50;
+    public float pulseAmplitude = .2f;
+    public float pulseDecay = 0.999f;
+    public int pulseTailLength = 5;
 
     private int j = 0;
 
