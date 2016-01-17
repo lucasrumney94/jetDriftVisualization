@@ -6,7 +6,8 @@ using System.Linq;
 public class sphereSpiral : MonoBehaviour {
 
     
-    public const int numberOfSpheres = 2048;
+    public const int numberOfSpheres = 1024;
+    public float Speed = 60.0f;
 
     public GameObject spiralSphere;
     public bool goldenRatio = true;
@@ -72,7 +73,8 @@ public class sphereSpiral : MonoBehaviour {
             temp.transform.parent = this.gameObject.transform;
             spheres.Add(temp);
         }
-        Debug.Log(ys.Count);
+        //Debug.Log(ys.Count);
+        StartCoroutine("timedUpdate");
     }
 	
 	// Update is called once per frame
@@ -95,22 +97,32 @@ public class sphereSpiral : MonoBehaviour {
         if (other)
             seedAngle = otherNum;
         */
-        if (flange)
-            seedAngle = Mathf.Sin(2 * Mathf.PI * Time.time * flangeAmount);
         
+    }
 
-        for (int i = 0; i < numberOfSpheres; i++)
+
+    public IEnumerator timedUpdate()
+    {
+        for (;;)
         {
-            theta = i * seedAngle;
-            r = Mathf.Sqrt(i) / sqrtNumOfSpheres;
-            
-            radius = Mathf.Sqrt(1 - ys[i] * ys[i]);
-            tempPos.x = radius * Mathf.Cos(theta) * waveGen.Samples[i];
-            tempPos.y = ys[i];
-            tempPos.z = radius * Mathf.Sin(theta) * waveGen.Samples[i];
-            spheres[i].transform.position = tempPos;
+            if (flange)
+                seedAngle = Mathf.Sin(2 * Mathf.PI * Time.time * flangeAmount);
 
-            //spheres[i].transform.position = new Vector3(radius * Mathf.Cos(theta) * waveGen.Samples[i], y, radius * Mathf.Sin(theta) * waveGen.Samples[i]);
+
+            for (int i = 0; i < numberOfSpheres; i++)
+            {
+                theta = i * seedAngle;
+                r = Mathf.Sqrt(i) / sqrtNumOfSpheres;
+
+                radius = Mathf.Sqrt(1 - ys[i] * ys[i]);
+                tempPos.x = radius * Mathf.Cos(theta) * waveGen.Samples[i];
+                tempPos.y = ys[i];
+                tempPos.z = radius * Mathf.Sin(theta) * waveGen.Samples[i];
+                spheres[i].transform.position = tempPos;
+
+                //spheres[i].transform.position = new Vector3(radius * Mathf.Cos(theta) * waveGen.Samples[i], y, radius * Mathf.Sin(theta) * waveGen.Samples[i]);
+            }
+            yield return new WaitForSeconds(1 / Speed);
         }
     }
 }
