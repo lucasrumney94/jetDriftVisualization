@@ -8,7 +8,7 @@ public class SpiralSphereWizard : ScriptableWizard {
 		ScriptableWizard.DisplayWizard<SpiralSphereWizard>("Create Spiral Sphere");
 	}
 	
-	[Range(1, 50)]
+	[Range(1, 128)]
 	public int width = 20;
 	public float radius = 1f;
 	
