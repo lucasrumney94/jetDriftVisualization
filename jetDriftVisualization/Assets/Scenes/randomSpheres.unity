@@ -3942,7 +3942,7 @@ MonoBehaviour:
   - 0
   - 0
   travelingWave: 1
-  freq: 0
+  freq: 1
   Amplitude: .100000001
   sampleRate: 500
   multiCos: 0
