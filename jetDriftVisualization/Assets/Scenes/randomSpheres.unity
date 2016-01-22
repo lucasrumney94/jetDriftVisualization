@@ -2508,7 +2508,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 537415449}
-  m_Mesh: {fileID: 4300000, guid: a52e7a3bc245b48dead7ed46dc38ecec, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 06679a4bfec695949b019652747b8483, type: 2}
 --- !u!4 &537415454
 Transform:
   m_ObjectHideFlags: 0
@@ -2885,6 +2885,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2128011141}
   - 114: {fileID: 2128011142}
+  - 114: {fileID: 2128011143}
   m_Layer: 0
   m_Name: waveGenerator
   m_TagString: AudioAnalyzer
@@ -3941,7 +3942,7 @@ MonoBehaviour:
   - 0
   - 0
   travelingWave: 1
-  freq: .400000006
+  freq: 0
   Amplitude: .100000001
   sampleRate: 500
   multiCos: 0
@@ -3958,6 +3959,18 @@ MonoBehaviour:
   pulseAmplitude: .200000003
   pulseDecay: .999000013
   pulseTailLength: 5
+--- !u!114 &2128011143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2128011140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c3e5ad18a460b41b214ae6801d1f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increment: .00100000005
 --- !u!1 &2145348036
 GameObject:
   m_ObjectHideFlags: 0
