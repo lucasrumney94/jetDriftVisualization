@@ -46,21 +46,6 @@ public class DeformSphere : MonoBehaviour {
         mesh.RecalculateNormals();
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    mesh = GetComponent<MeshFilter>().sharedMesh;
-    //    verts = mesh.vertices;
-
-    //    for (int i = 1; i < verts.Length; i++)
-    //    {
-    //        Gizmos.color = new Color(1f, (float)i / verts.Length, (float)i / verts.Length);
-    //        Gizmos.DrawSphere(verts[i], 0.02f);
-    //        Gizmos.DrawLine(verts[i], verts[i - 1]);
-    //    }
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawSphere(verts[0], 0.02f);
-    //}
-
     private float[] DownsampleList(float[] values, int newLength)
     {
         float[] newList = new float[newLength];
