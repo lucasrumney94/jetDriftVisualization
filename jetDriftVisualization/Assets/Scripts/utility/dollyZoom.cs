@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class dollyZoom : MonoBehaviour
@@ -50,6 +50,6 @@ public class dollyZoom : MonoBehaviour
         }
 
         // Simple control to allow the camera to be moved in and out using the up/down arrows.
-        transform.Translate(-Mathf.Cos(9*Time.time) * Vector3.forward * Time.deltaTime *0.9f);
+        transform.Translate(-Mathf.Cos(Time.time/5) * Vector3.forward * Time.deltaTime *2.0f);
     }
 }
