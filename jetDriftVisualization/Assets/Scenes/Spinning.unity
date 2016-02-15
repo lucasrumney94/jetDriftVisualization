@@ -992,7 +992,7 @@ ParticleSystem:
         rgba: 4294901779
       minMaxState: 0
     startSize:
-      scalar: 0.5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2657,7 +2657,7 @@ ParticleSystem:
         rgba: 4294901790
       minMaxState: 0
     startSize:
-      scalar: 0.5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
