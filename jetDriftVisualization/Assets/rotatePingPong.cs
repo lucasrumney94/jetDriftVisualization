@@ -15,6 +15,6 @@ public class rotatePingPong : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        gameObject.transform.eulerAngles = new Vector3(amplitude*Mathf.Cos(Time.time*frequency*2*Mathf.PI),0.0f,0.0f);
+        gameObject.transform.localEulerAngles = new Vector3(amplitude*Mathf.Cos(Time.time*frequency*2*Mathf.PI),0.0f,0.0f);
 	}
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,6 +15,8 @@ public class Swarm : MonoBehaviour {
     public int height = 128;
     public float randInitPosMag = 20.0f;
     public float swarmGridSpacing;
+
+    public bool doCOS = false;
 
     public List<GameObject> swarmList = new List<GameObject>();
     //public List<Vector3> desiredPositions = new List<Vector3>();
