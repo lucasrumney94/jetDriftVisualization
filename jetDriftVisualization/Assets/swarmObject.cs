@@ -21,6 +21,6 @@ public class swarmObject : MonoBehaviour {
         //gameObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0);
         this.gameObject.GetComponent<Rigidbody>().AddForce((targetGridSquare - this.gameObject.transform.position)+9*Random.insideUnitSphere);
 
-        this.gameObject.GetComponent<Rigidbody>().AddForce(5*new Vector3(0, 0, Mathf.Sin(Time.time + targetGridSquare.magnitude/5)));
+        this.gameObject.GetComponent<Rigidbody>().AddForce(5*new Vector3(0, 0, Mathf.Sin(Time.time + targetGridSquare.magnitude / 10*Mathf.Sin(Time.time/10))));
     }
 }
