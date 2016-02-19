@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/randomSpheres.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/gridTestScene.unity
   - enabled: 0
     path: Assets/Scenes/lowramtest.unity
@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/imgReadTest.unity
   - enabled: 0
     path: Assets/Scenes/audioScene.unity
+  - enabled: 1
+    path: Assets/Scenes/BackgroundTest.unity
