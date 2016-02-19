@@ -57,7 +57,7 @@ public class Swarm : MonoBehaviour {
             swarmList.Add(temp);
         }
 
-        imgToColor();
+        ImageToBlockUV();
     }
 	
 	// Update is called once per frame
@@ -68,24 +68,37 @@ public class Swarm : MonoBehaviour {
             swarmList[i].GetComponent<swarmObject>().targetGridSquare = targetGrid.GetComponent<targetGrid>().positions[i];
         }
     }
+    
+    //Commented out to prevent potential problems with dynamic material creation in WebGL
+    //void imgToColor()
+    //{
+    //    int x = Mathf.FloorToInt(sourceRect.x);
+    //    int y = Mathf.FloorToInt(sourceRect.x);
+    //    int mywidth = Mathf.FloorToInt(sourceRect.width);
+    //    int myheight = Mathf.FloorToInt(sourceRect.height);
+    //    Color[] pix = sourceTex.GetPixels(x, y, mywidth, myheight);
+    //    //Texture2D destTex = new Texture2D(width, height);
+    //    //destTex.SetPixels(pix);
+    //    //destTex.Apply();
+    //    //GetComponent<Renderer>().material.mainTexture = destTex;
 
-    void imgToColor()
-    {
-        int x = Mathf.FloorToInt(sourceRect.x);
-        int y = Mathf.FloorToInt(sourceRect.x);
-        int mywidth = Mathf.FloorToInt(sourceRect.width);
-        int myheight = Mathf.FloorToInt(sourceRect.height);
-        Color[] pix = sourceTex.GetPixels(x, y, mywidth, myheight);
-        //Texture2D destTex = new Texture2D(width, height);
-        //destTex.SetPixels(pix);
-        //destTex.Apply();
-        //GetComponent<Renderer>().material.mainTexture = destTex;
-
-        for (int i = 0; i < pix.Length; i++)
-        {
-            swarmList[i].GetComponent<MeshRenderer>().sharedMaterial.SetColor("_Color", pix[i]);
+    //    for (int i = 0; i < pix.Length; i++)
+    //    {
+    //        swarmList[i].GetComponent<MeshRenderer>().sharedMaterial.SetColor("_Color", pix[i]);
             
-            //Debug.Log(pix[i]);
+    //        //Debug.Log(pix[i]);
+    //    }
+    //}
+
+    private void ImageToBlockUV()
+    {
+        for(int i = 0, y = 0; y < height; y++)
+        {
+            for(int x = 0; x < width; x++, i++)
+            {
+                Vector2 uv = new Vector2((float)x / width, (float)y / height);
+                swarmList[i].GetComponent<swarmObject>().SetTexUV(uv);
+            }
         }
     }
 }

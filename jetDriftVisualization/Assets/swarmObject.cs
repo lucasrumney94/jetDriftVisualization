@@ -7,13 +7,31 @@ public class swarmObject : MonoBehaviour {
 
     public Vector3 targetGridSquare = new Vector3();
 
+    private Mesh mesh;
+    private Vector2[] uv;
+
 	// Use this for initialization
 	void Awake ()
     {
-        gameObject.GetComponent<Renderer>().material = new Material(Shader.Find("Unlit/Color"));
+        mesh = GetComponent<MeshFilter>().mesh;
+        uv = new Vector2[mesh.uv.Length];
         //gameObject.GetComponent<Renderer>().material.SetFloat("_Mode", 3);
         //gameObject.GetComponent<Renderer>().material.SetFloat("_Glossiness", 0);
 
+    }
+
+    public void SetTexUV(Vector2 pos)
+    {
+        for(int i = 0; i < uv.Length; i++)
+        {
+            uv[i] = new Vector2(pos.x, pos.y);
+        }
+        mesh.uv = uv;
+    }
+
+    private void SetMaterial()
+    {
+        gameObject.GetComponent<Renderer>().material = new Material(Shader.Find("Unlit/Color"));
     }
 
     // Update is called once per frame
