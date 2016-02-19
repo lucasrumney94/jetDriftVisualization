@@ -18,7 +18,7 @@ public class PerspectiveMarkerMover : MonoBehaviour
     void Start()
     {
         cameraScreenedgeAngle = Camera.main.fieldOfView / 2f;
-        verticalMarker.position = new Vector3(-Mathf.Tan(cameraScreenedgeAngle * Mathf.Deg2Rad) * cameraDistance, 0f, cameraDistance);
+        verticalMarker.position = new Vector3(-Mathf.Tan(cameraScreenedgeAngle * Mathf.Deg2Rad * 2f) * cameraDistance, 0f, cameraDistance);
         horizontalMarker.position = new Vector3(0f, -Mathf.Tan(cameraScreenedgeAngle * Mathf.Deg2Rad) * cameraDistance, cameraDistance);
     }
 
@@ -26,7 +26,15 @@ public class PerspectiveMarkerMover : MonoBehaviour
     {
         verticalMarker.position += Vector3.right * markerSpeed * Time.deltaTime;
         horizontalMarker.position += Vector3.up * markerSpeed * Time.deltaTime;
+        if(verticalMarker.position.x > Mathf.Tan(cameraScreenedgeAngle * Mathf.Deg2Rad * 2f) * cameraDistance)
+        {
+            verticalMarker.position = new Vector3(-Mathf.Tan(cameraScreenedgeAngle * Mathf.Deg2Rad * 2f) * cameraDistance, 0f, cameraDistance);
+        }
+        if (horizontalMarker.position.y > Mathf.Tan(cameraScreenedgeAngle * Mathf.Deg2Rad) * cameraDistance)
+        {
+            horizontalMarker.position = new Vector3(0f, -Mathf.Tan(cameraScreenedgeAngle * Mathf.Deg2Rad) * cameraDistance, cameraDistance);
+        }
 
-        markerText.text = verticalMarker.position.x + " X, " + horizontalMarker.position.y + " Y";
+        markerText.text =  verticalMarker.position.x.ToString("F2") + " X, " + horizontalMarker.position.y.ToString("F2") + " Y";
     }
 }
