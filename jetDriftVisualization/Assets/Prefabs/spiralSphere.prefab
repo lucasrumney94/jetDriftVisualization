@@ -91,7 +91,7 @@ TrailRenderer:
   m_SortingOrder: 0
   m_Time: 10
   m_StartWidth: 0.01
-  m_EndWidth: 0.01
+  m_EndWidth: 0.0001
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
@@ -108,7 +108,7 @@ TrailRenderer:
     m_Color[4]:
       serializedVersion: 2
       rgba: 16777215
-  m_MinVertexDistance: 0.01
+  m_MinVertexDistance: 0.0000001
   m_Autodestruct: 0
 --- !u!1001 &100100000
 Prefab:
@@ -179,7 +179,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_EndWidth
-      value: 0.01
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_Color[0].rgba
@@ -207,7 +207,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_MinVertexDistance
-      value: .00999999978
+      value: 0.0000001
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Time
