@@ -244,7 +244,7 @@ GameObject:
   - 65: {fileID: 1329452343}
   - 23: {fileID: 1329452342}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Wireframe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +260,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b28cc6b0091f36c44ba7f0c83f894f7d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -294,7 +294,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1329452341}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 06679a4bfec695949b019652747b8483, type: 2}
 --- !u!4 &1329452345
 Transform:
   m_ObjectHideFlags: 0
