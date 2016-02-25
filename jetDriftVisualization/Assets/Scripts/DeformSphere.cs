@@ -33,14 +33,15 @@ public class DeformSphere : MonoBehaviour {
 
     void Update()
     {
-        if(spectrum.Samples.Length >= verts.Length)
+        if (spectrum.Samples.Length > verts.Length)
         {
             rescaledSamples = DownsampleList(spectrum.Samples, verts.Length);
         }
-        else if(spectrum.Samples.Length < verts.Length)
+        else if (spectrum.Samples.Length < verts.Length)
         {
             rescaledSamples = UpFillList(spectrum.Samples, verts.Length);
         }
+        else rescaledSamples = spectrum.Samples;
         SlideVerticies();
         mesh.vertices = verts;
         mesh.RecalculateNormals();
