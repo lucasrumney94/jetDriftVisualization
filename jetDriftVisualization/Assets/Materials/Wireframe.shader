@@ -9,11 +9,13 @@
 
 	SubShader
 	{
+		Cull Off
 		Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "Rendertype" = "Transparent"}
 		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass
 		{
+
 			CGPROGRAM
 			#pragma target 4.0
 			#pragma vertex vert
