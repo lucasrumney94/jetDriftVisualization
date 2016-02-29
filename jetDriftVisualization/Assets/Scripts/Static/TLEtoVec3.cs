@@ -11,6 +11,8 @@ public static class TLEtoVec3 {
 
         Vector3 position = new Vector3(elipticalCoordinates.x, elipticalCoordinates.y, 0f);
 
+        position = Incline(position, inclination);
+
         return position * (1f / inverseScale);
     }
 
@@ -51,8 +53,25 @@ public static class TLEtoVec3 {
         float x = semiMajor * Mathf.Cos(eccentricAnomaly);
         float y = semiMinor * Mathf.Sin(eccentricAnomaly);
 
-        Vector2 pos = new Vector2(x, y);
+        Vector2 pos = new Vector2(x, y) - FocusPosition(semiMajor, semiMinor);
 
         return pos;
+    }
+
+    private static Vector2 FocusPosition(float semiMajor, float semiMinor)
+    {
+        float x = Mathf.Pow(Mathf.Pow(semiMajor, 2f) - Mathf.Pow(semiMinor, 2f), 1f / 2f);
+
+        return new Vector2(x, 0f);
+    }
+
+    public static Vector3 Incline(Vector3 position, float inclination)
+    {
+        float y = Mathf.Cos(inclination * Mathf.Deg2Rad) * position.y;
+        float z = Mathf.Sin(inclination * Mathf.Deg2Rad) * position.y;
+
+        Vector3 newPos = new Vector3(position.x, y, z);
+
+        return newPos;
     }
 }
