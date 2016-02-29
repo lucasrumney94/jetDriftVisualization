@@ -115,7 +115,7 @@ MonoBehaviour:
   inversePositionScale: 10000000
   inclination: 45
   rightAscensionOfAscendingNode: 0
-  eccentricity: 0.6
+  eccentricity: 0
   arguementOfPeriapsis: 0
   meanAnomaly: 0
   meanMotion: 1

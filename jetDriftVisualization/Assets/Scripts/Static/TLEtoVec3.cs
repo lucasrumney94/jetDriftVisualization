@@ -11,7 +11,11 @@ public static class TLEtoVec3 {
 
         Vector3 position = new Vector3(elipticalCoordinates.x, elipticalCoordinates.y, 0f);
 
-        position = Incline(position, inclination);
+        //position = ApplyInclination(position, inclination);
+        //position = ApplyRightAscensionOfAscendingNode(position, rightAscensionOfAscendingNode);
+        //position = ApplyArguementOfPeriapsis(position, arguementOfPeriapsis);
+
+        position = ApplyRotation(position, inclination, rightAscensionOfAscendingNode, arguementOfPeriapsis);
 
         return position * (1f / inverseScale);
     }
@@ -65,13 +69,61 @@ public static class TLEtoVec3 {
         return new Vector2(x, 0f);
     }
 
-    public static Vector3 Incline(Vector3 position, float inclination)
+    private static Vector3 ApplyRotation(Vector3 position, float inclination, float rightAscensionOfAscendingNode, float arguementOfPeriapsis)
+    {
+        Vector3 rotation = new Vector3(inclination, rightAscensionOfAscendingNode, arguementOfPeriapsis);
+        return Rotate(position, rotation);
+    }
+
+    private static Vector3 ApplyInclination(Vector3 position, float inclination)
     {
         float y = Mathf.Cos(inclination * Mathf.Deg2Rad) * position.y;
         float z = Mathf.Sin(inclination * Mathf.Deg2Rad) * position.y;
 
-        Vector3 newPos = new Vector3(position.x, y, z);
+        Vector3 rotation = new Vector3(inclination, 0f, 0f);
+        Vector3 newPos = Rotate(position, rotation);
 
         return newPos;
+    }
+
+    private static Vector3 ApplyRightAscensionOfAscendingNode(Vector3 position, float rightAscensionOfAscendingNode)
+    {
+        Vector3 rotation = new Vector3(0f, 0f, rightAscensionOfAscendingNode);
+        return Rotate(position, rotation);
+    }
+
+    private static Vector3 ApplyArguementOfPeriapsis(Vector3 position, float arguementOfPeriapsis)
+    {
+        Vector3 rotation = new Vector3(0f, arguementOfPeriapsis, 0f);
+        return Rotate(position, rotation);
+    }
+
+    private static Vector3 Rotate(Vector3 position, Vector3 rotation)
+    {
+        float radX = rotation.x * Mathf.Deg2Rad;
+        float radY = rotation.y * Mathf.Deg2Rad;
+        float radZ = rotation.z * Mathf.Deg2Rad;
+
+        float sinX = Mathf.Sin(radX);
+        float cosX = Mathf.Cos(radX);
+        float sinY = Mathf.Sin(radY);
+        float cosY = Mathf.Cos(radY);
+        float sinZ = Mathf.Sin(radZ);
+        float cosZ = Mathf.Cos(radZ);
+
+        Vector3 xAxis = new Vector3(
+            cosY * cosZ,
+            cosX * sinZ + sinX * sinY * cosZ,
+            sinX * sinZ - cosX * sinY * cosZ);
+        Vector3 yAxis = new Vector3(
+            -cosY * sinZ,
+            cosX * cosZ - sinX * sinY * sinZ,
+            sinX * cosZ + cosX * sinY * sinZ);
+        Vector3 zAxis = new Vector3(
+            sinY,
+            -sinX * cosY,
+            cosX * cosY);
+
+        return position.x * xAxis + position.y * yAxis + position.z * zAxis;
     }
 }
