@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public static class TLEtoVec3 {
 
     public static float _SGP = 3.986004418f * Mathf.Pow(10, 14);
 
-    public static Vector3 Convert(Satellite tleData, int accuracy, float inverseScale = 1f)
+    public static float _SecondsInDay = 86164.09164f;
+
+    public static Vector3 Convert(Satellite tleData, DateTime timeOfReading, int accuracy = 1, float inverseScale = 1f)
     {
+        int epochYear = tleData.EpochYear;
+        float epochDay = tleData.EpochDay;
         float inclination = tleData.Inclination;
         float rightAscensionOfAscendingNode = tleData.RightAscensionOfTheAscendingNode;
         float eccentricity = tleData.Eccentricity;
@@ -14,17 +19,36 @@ public static class TLEtoVec3 {
         float meanAnomaly = tleData.MeanAnomaly;
         float meanMotion = tleData.MeanMotion;
 
+        meanAnomaly = AdvanceMeanAnomaly(epochYear, epochDay, meanAnomaly, meanMotion, timeOfReading);
+
         Vector2 elipticalCoordinates = ElipticalCoordinates(eccentricity, meanAnomaly, meanMotion, accuracy);
 
         Vector3 position = new Vector3(elipticalCoordinates.x, elipticalCoordinates.y, 0f);
 
-        //position = ApplyInclination(position, inclination);
-        //position = ApplyRightAscensionOfAscendingNode(position, rightAscensionOfAscendingNode);
-        //position = ApplyArguementOfPeriapsis(position, arguementOfPeriapsis);
-
         position = ApplyRotation(position, inclination, rightAscensionOfAscendingNode, arguementOfPeriapsis);
 
         return position * (1f / inverseScale);
+    }
+
+    private static float AdvanceMeanAnomaly(int epochYear, float epochDay, float meanAnomaly, float meanMotion, DateTime timeOfReading)
+    {
+        float timeChange = TimeChange(epochYear, epochDay, timeOfReading);
+        //Debug.Log(timeChange);
+        return meanAnomaly + (timeChange * meanMotion);
+    }
+
+    //Returns days since the TLE data was taken, as a float
+    private static float TimeChange(int epochYear, float epochDay, DateTime timeOfReading)
+    {
+        int currentEpochYear = timeOfReading.Year % 100;
+        float currentEpochDay = (float)timeOfReading.DayOfYear + ((float)timeOfReading.TimeOfDay.TotalSeconds / _SecondsInDay);
+
+        int yearChange = currentEpochYear - epochYear;
+        float dayChange = currentEpochDay - epochDay;
+        //Debug.Log(yearChange);
+        //Debug.Log(dayChange);
+
+        return dayChange + (yearChange * 365);
     }
 
     private static float EccentricAnomaly(float eccentricity, float meanAnomaly, int accuracy)

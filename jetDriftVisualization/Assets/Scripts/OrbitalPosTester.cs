@@ -5,6 +5,7 @@ using System;
 public class OrbitalPosTester : MonoBehaviour {
 
     public float inversePositionScale = 1f;
+    public float timeScale = 1f;
 
     public float inclination;
     public float rightAscensionOfAscendingNode;
@@ -18,30 +19,59 @@ public class OrbitalPosTester : MonoBehaviour {
     public int accuracy = 25;
     public int conicSegments = 10;
 
+    public DateTime readingTime;
+
+    private DateTime startTime;
+
     private Vector3[] orbitPositions;
+    private GameObject[] satellites;
+    private bool loadedSatellites = false;
 
     public GameObject planet;
     public HTMLParser parser;
 
     void Start()
     {
-
+        startTime = DateTime.UtcNow;
     }
 
     void Update()
     {
-        DrawObjects();
+        AdvanceTime();
+        if (parser.loadedSatellites)
+        {
+            if(loadedSatellites == false)
+            {
+                LoadSatellites();
+            }
+            MoveSatellites();
+        }
         //double epoch = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
     }
 
-    private void DrawObjects()
+    private void AdvanceTime()
     {
-        orbitPositions = new Vector3[parser.Satellites.Count];
-        for (int i = 0; i < parser.Satellites.Count; i++)
+        readingTime = startTime.AddSeconds((double)(Time.time * timeScale));
+    }
+
+    private void LoadSatellites()
+    {
+        satellites = new GameObject[parser.Satellites.Count];
+        for (int i = 0; i < satellites.Length; i++)
         {
-            Vector3 position = TLEtoVec3.Convert(parser.Satellites[i], accuracy, inversePositionScale);
-            //Debug.Log(position);
-            orbitPositions[i] = position;
+            satellites[i] = Instantiate(planet);
+            satellites[i].transform.SetParent(transform);
+            satellites[i].name = parser.Satellites[i].Name;
+        }
+        loadedSatellites = true;
+    }
+
+    private void MoveSatellites()
+    {
+        for (int i = 0; i < satellites.Length; i++)
+        {
+            Vector3 position = TLEtoVec3.Convert(parser.Satellites[i], readingTime, accuracy, inversePositionScale);
+            satellites[i].transform.position = position;
         }
     }
 
@@ -55,17 +85,17 @@ public class OrbitalPosTester : MonoBehaviour {
         }
     }
 
-    void OnDrawGizmos()
-    {
-        DrawObjects();
-        Gizmos.color = Color.red;
-        for (int i = 0; i < orbitPositions.Length; i++)
-        {
-            Gizmos.DrawCube(orbitPositions[i], Vector3.one);
-            //Gizmos.DrawLine(orbitPositions[i], orbitPositions[i + 1]);
-        }
-        //Gizmos.DrawLine(orbitPositions[conicSegments - 1], orbitPositions[0]);
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawLine(orbitPositions[0], Vector3.zero);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    DrawObjects();
+    //    Gizmos.color = Color.red;
+    //    for (int i = 0; i < orbitPositions.Length; i++)
+    //    {
+    //        //Gizmos.DrawCube(orbitPositions[i], Vector3.one);
+    //        //Gizmos.DrawLine(orbitPositions[i], orbitPositions[i + 1]);
+    //    }
+    //    //Gizmos.DrawLine(orbitPositions[conicSegments - 1], orbitPositions[0]);
+    //    //Gizmos.color = Color.green;
+    //    //Gizmos.DrawLine(orbitPositions[0], Vector3.zero);
+    //}
 }

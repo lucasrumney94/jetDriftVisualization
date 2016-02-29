@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inversePositionScale: 1000000
+  timeScale: 3600
   inclination: 0
   rightAscensionOfAscendingNode: 0
   eccentricity: 0
