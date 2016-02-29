@@ -136,6 +136,10 @@ Prefab:
       propertyPath: URLs.Array.data[2]
       value: http://celestrak.com/NORAD/elements/stations.txt
       objectReference: {fileID: 0}
+    - target: {fileID: 11421374, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
+      propertyPath: URLs.Array.data[0]
+      value: https://4bd3ce928ae3931f411be4f40aae2ad9dab4c067-www.googledrive.com/host/0Bz2d8cdcnpeoSmpYZU5vamdwQ3M/weather.txt
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
   m_IsPrefabParent: 0
@@ -477,7 +481,8 @@ MonoBehaviour:
   invertCamera: 0
   camHorizontalSensitivity: 1
   camVerticalSensitivity: 1
-  scrollSpeed: 100
+  scrollSpeed: 10
+  mouseOne: Fire1
   camLeftRight: Mouse X
   camUpDown: Mouse Y
   mouseScroll: Mouse ScrollWheel

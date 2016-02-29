@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     [Range(0.1f, 10f)]
     public float camVerticalSensitivity = 1f;
     public float scrollSpeed = 4f;
+    public string mouseOne = "Fire1";
     public string camLeftRight = "Mouse X";
     public string camUpDown = "Mouse Y";
     public string mouseScroll = "Mouse ScrollWheel";
@@ -67,8 +68,14 @@ public class InputManager : MonoBehaviour
     {
         Vector3 movementVector = Vector3.zero;
         movementVector.x = Input.GetAxis(camLeftRight) * camHorizontalSensitivity;
-        movementVector.y = Input.GetAxis(camUpDown) * camVerticalSensitivity * (invertCamera ? 1f : -1f);
-        movementVector.z = -Input.GetAxis(mouseScroll) * scrollSpeed;
+        if (Input.GetButton(mouseOne))
+        {
+            movementVector.z = -Input.GetAxis(camUpDown) * scrollSpeed;
+        }
+        else
+        {
+            movementVector.y = Input.GetAxis(camUpDown) * camVerticalSensitivity * (invertCamera ? 1f : -1f);
+        }
 
         //TODO: Pass vertical movement to camera, and horizontal movement to player
         //playerMovement.rotatePlayer(movementVector.x);
