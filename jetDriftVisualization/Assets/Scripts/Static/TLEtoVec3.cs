@@ -5,13 +5,13 @@ public static class TLEtoVec3 {
 
     public static float _SGP = 3.986004418f * Mathf.Pow(10, 14);
 
-    public static Vector3 Convert(float inclination, float rightAscensionOfAscendingNode, float eccentricity, float arguementOfPeriapsis, float meanAnomaly, float meanMotion, int accuracy)
+    public static Vector3 Convert(float inclination, float rightAscensionOfAscendingNode, float eccentricity, float arguementOfPeriapsis, float meanAnomaly, float meanMotion, int accuracy, float inverseScale = 1f)
     {
         Vector2 elipticalCoordinates = ElipticalCoordinates(eccentricity, meanAnomaly, meanMotion, accuracy);
 
         Vector3 position = new Vector3(elipticalCoordinates.x, elipticalCoordinates.y, 0f);
 
-        return position;
+        return position * (1f / inverseScale);
     }
 
     private static float EccentricAnomaly(float eccentricity, float meanAnomaly, int accuracy)
