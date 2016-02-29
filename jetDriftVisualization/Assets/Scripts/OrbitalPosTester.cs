@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class OrbitalPosTester : MonoBehaviour {
 
@@ -20,13 +21,28 @@ public class OrbitalPosTester : MonoBehaviour {
     private Vector3[] orbitPositions;
 
     public GameObject planet;
+    public HTMLParser parser;
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
-        Vector3 orbitalPositionVector = TLEtoVec3.Convert(inclination, rightAscensionOfAscendingNode, eccentricity, arguementOfPeriapsis, meanAnomaly, meanMotion, accuracy, inversePositionScale);
-        planet.transform.position = orbitalPositionVector;
-        //Debug.Log(orbitalPositionVector.x + ", " + orbitalPositionVector.y);
-        //Debug.Log(orbitalPositionVector.x - (eccentricity * Mathf.Sin(orbitalPositionVector.x)));
+        DrawObjects();
+        //double epoch = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+    }
+
+    private void DrawObjects()
+    {
+        orbitPositions = new Vector3[parser.Satellites.Count];
+        for (int i = 0; i < parser.Satellites.Count; i++)
+        {
+            Vector3 position = TLEtoVec3.Convert(parser.Satellites[i], accuracy, inversePositionScale);
+            //Debug.Log(position);
+            orbitPositions[i] = position;
+        }
     }
 
     private void FillPositions()
@@ -35,20 +51,21 @@ public class OrbitalPosTester : MonoBehaviour {
         for(int i = 0; i < conicSegments; i++)
         {
             float anomaly = (i * 2f * Mathf.PI) / (conicSegments);
-            orbitPositions[i] = TLEtoVec3.Convert(inclination, rightAscensionOfAscendingNode, eccentricity, arguementOfPeriapsis, anomaly, meanMotion, accuracy, inversePositionScale);
+            //orbitPositions[i] = TLEtoVec3.Convert(inclination, rightAscensionOfAscendingNode, eccentricity, arguementOfPeriapsis, anomaly, meanMotion, accuracy, inversePositionScale);
         }
     }
 
     void OnDrawGizmos()
     {
-        FillPositions();
+        DrawObjects();
         Gizmos.color = Color.red;
-        for (int i = 0; i < conicSegments - 1; i++)
+        for (int i = 0; i < orbitPositions.Length; i++)
         {
-            Gizmos.DrawLine(orbitPositions[i], orbitPositions[i + 1]);
+            Gizmos.DrawCube(orbitPositions[i], Vector3.one);
+            //Gizmos.DrawLine(orbitPositions[i], orbitPositions[i + 1]);
         }
-        Gizmos.DrawLine(orbitPositions[conicSegments - 1], orbitPositions[0]);
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(orbitPositions[0], Vector3.zero);
+        //Gizmos.DrawLine(orbitPositions[conicSegments - 1], orbitPositions[0]);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawLine(orbitPositions[0], Vector3.zero);
     }
 }

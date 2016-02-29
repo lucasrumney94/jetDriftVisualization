@@ -31,19 +31,21 @@ public class HTMLParser : MonoBehaviour {
                 //create temporary strings to hold extracted data then assign after all data has been extracted
                 string Name;
                 float Inclination;
+                float RightAscensionOfTheAscendingNode;
                 float Eccentricity;
                 float ArgumentOfPeriapsis;
                 float MeanAnomaly;
                 float MeanMotion;
 
                 Name = parseTextNewlined[i];
-                Inclination = float.Parse(parseTextNewlined[i + 2].Substring(9,7));
-                Eccentricity = float.Parse(parseTextNewlined[i + 2].Substring(27, 6));
+                Inclination = float.Parse(parseTextNewlined[i + 2].Substring(9, 7));
+                RightAscensionOfTheAscendingNode = float.Parse(parseTextNewlined[i + 2].Substring(18, 7));
+                Eccentricity = 0f;// float.Parse(parseTextNewlined[i + 2].Substring(27, 6)); //Needs to be converted to a decimal
                 ArgumentOfPeriapsis = float.Parse(parseTextNewlined[i + 2].Substring(35, 7));
                 MeanAnomaly = float.Parse(parseTextNewlined[i + 2].Substring(44, 6));
                 MeanMotion = float.Parse(parseTextNewlined[i + 2].Substring(53, 10));
 
-                Satellites.Add(new Satellite(Name,Inclination,Eccentricity,ArgumentOfPeriapsis,MeanAnomaly,MeanMotion));
+                Satellites.Add(new Satellite(Name, Inclination, RightAscensionOfTheAscendingNode, Eccentricity, ArgumentOfPeriapsis, MeanAnomaly, MeanMotion));
 
             }
 

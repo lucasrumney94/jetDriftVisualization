@@ -51,8 +51,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -117,6 +119,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -127,6 +130,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -137,6 +141,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -147,6 +152,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &11400044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd0033450780614697ad5fba0167709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amplitude: 0
 --- !u!114 &11416964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,7 +248,7 @@ MonoBehaviour:
   rotateMe: 0
   colorMe: 1
   scaleMe: 1
-  Interval: .0199999996
+  Interval: 0.02
   powerOfTwoSamples: 6
   Gain: 10000
 --- !u!1001 &100100000

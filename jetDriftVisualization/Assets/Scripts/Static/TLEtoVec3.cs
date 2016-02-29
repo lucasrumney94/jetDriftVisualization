@@ -5,8 +5,15 @@ public static class TLEtoVec3 {
 
     public static float _SGP = 3.986004418f * Mathf.Pow(10, 14);
 
-    public static Vector3 Convert(float inclination, float rightAscensionOfAscendingNode, float eccentricity, float arguementOfPeriapsis, float meanAnomaly, float meanMotion, int accuracy, float inverseScale = 1f)
+    public static Vector3 Convert(Satellite tleData, int accuracy, float inverseScale = 1f)
     {
+        float inclination = tleData.Inclination;
+        float rightAscensionOfAscendingNode = tleData.RightAscensionOfTheAscendingNode;
+        float eccentricity = tleData.Eccentricity;
+        float arguementOfPeriapsis = tleData.ArgumentOfPeriapsis;
+        float meanAnomaly = tleData.MeanAnomaly;
+        float meanMotion = tleData.MeanMotion;
+
         Vector2 elipticalCoordinates = ElipticalCoordinates(eccentricity, meanAnomaly, meanMotion, accuracy);
 
         Vector3 position = new Vector3(elipticalCoordinates.x, elipticalCoordinates.y, 0f);
@@ -76,29 +83,6 @@ public static class TLEtoVec3 {
         Vector3 secondRotation = new Vector3(0f, 0f, rightAscensionOfAscendingNode);
         newPos = Rotate(newPos, secondRotation);
         return newPos;
-    }
-
-    private static Vector3 ApplyInclination(Vector3 position, float inclination)
-    {
-        float y = Mathf.Cos(inclination * Mathf.Deg2Rad) * position.y;
-        float z = Mathf.Sin(inclination * Mathf.Deg2Rad) * position.y;
-
-        Vector3 rotation = new Vector3(inclination, 0f, 0f);
-        Vector3 newPos = Rotate(position, rotation);
-
-        return newPos;
-    }
-
-    private static Vector3 ApplyRightAscensionOfAscendingNode(Vector3 position, float rightAscensionOfAscendingNode)
-    {
-        Vector3 rotation = new Vector3(0f, 0f, rightAscensionOfAscendingNode);
-        return Rotate(position, rotation);
-    }
-
-    private static Vector3 ApplyArguementOfPeriapsis(Vector3 position, float arguementOfPeriapsis)
-    {
-        Vector3 rotation = new Vector3(0f, arguementOfPeriapsis, 0f);
-        return Rotate(position, rotation);
     }
 
     private static Vector3 Rotate(Vector3 position, Vector3 rotation)
