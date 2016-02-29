@@ -8,7 +8,8 @@ using System.Collections.Generic;
 public class HTMLParser : MonoBehaviour {
 
     public bool loadedSatellites = false;
-    public string[] URLs = { "http://celestrak.com/NORAD/elements/weather.txt" , "http://celestrak.com/NORAD/elements/cosmos-2251-debris.txt", "http://celestrak.com/NORAD/elements/stations.txt","http://celestrak.com/NORAD/elements/1999-025.txt" };
+    //public string[] URLs = { "http://celestrak.com/NORAD/elements/weather.txt", "http://celestrak.com/NORAD/elements/cosmos-2251-debris.txt", "http://celestrak.com/NORAD/elements/stations.txt","http://celestrak.com/NORAD/elements/1999-025.txt" };
+    public string[] URLs = { "weather.txt" };
     public List<Satellite> Satellites = new List<Satellite>();
 
     private WWW www;
@@ -45,7 +46,7 @@ public class HTMLParser : MonoBehaviour {
                 EpochDay = float.Parse(parseTextNewlined[i + 1].Substring(20, 9));
                 Inclination = float.Parse(parseTextNewlined[i + 2].Substring(8, 7));
                 RightAscensionOfTheAscendingNode = float.Parse(parseTextNewlined[i + 2].Substring(17, 7));
-                Eccentricity = 0f;// float.Parse(parseTextNewlined[i + 2].Substring(26, 6)); //Needs to be converted to a decimal
+                Eccentricity = float.Parse(parseTextNewlined[i + 2].Substring(26, 6)) / 1000000f; //Needs to be converted to a decimal
                 ArgumentOfPeriapsis = float.Parse(parseTextNewlined[i + 2].Substring(34, 7));
                 MeanAnomaly = float.Parse(parseTextNewlined[i + 2].Substring(43, 6));
                 MeanMotion = float.Parse(parseTextNewlined[i + 2].Substring(52, 10));

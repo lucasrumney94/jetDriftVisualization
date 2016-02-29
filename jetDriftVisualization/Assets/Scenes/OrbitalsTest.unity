@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 0.9975659, b: 0.97794116, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: bbe0a0e5b7fe9074b9c2637f80325b27, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -36,7 +36,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 632804815}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11421374, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
       propertyPath: URLs.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 416022, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
       propertyPath: m_LocalPosition.x
@@ -173,8 +173,8 @@ MonoBehaviour:
   eccentricity: 0
   arguementOfPeriapsis: 0
   meanAnomaly: 0
-  meanMotion: 1
-  accuracy: 25
+  meanMotion: 15
+  accuracy: 5
   conicSegments: 300
   planet: {fileID: 123642, guid: edc7b1995b04ea4439977c09ac6fde29, type: 2}
   parser: {fileID: 1692053388}
@@ -245,8 +245,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 632804814}
-  m_LocalRotation: {x: 0.40821794, y: -0.23456973, z: 0.109381676, w: 0.87542605}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0.04213311, y: 0.25857165, z: -0.011289485, w: -0.96500677}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -262,9 +262,10 @@ GameObject:
   - 33: {fileID: 1024209610}
   - 135: {fileID: 1024209609}
   - 23: {fileID: 1024209608}
+  - 114: {fileID: 1024209612}
   m_Layer: 0
   m_Name: Earth Reference
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,7 +280,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5666666af51862b4e9a630b823c193b0, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -322,10 +323,22 @@ Transform:
   m_GameObject: {fileID: 1024209607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1024209612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024209607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f1f096709b7474f826ec91232a8ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitalStats: {fileID: 592721571}
 --- !u!1 &1263942968
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +351,7 @@ GameObject:
   - 92: {fileID: 1263942971}
   - 124: {fileID: 1263942970}
   - 81: {fileID: 1263942969}
+  - 114: {fileID: 1263942974}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -375,7 +389,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -407,11 +421,80 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263942968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1263942974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263942968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c07dcfc355191a49a54c713bf22d57c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCameraDistance: 200
+  targetCameraDistance: 0
+  currentLongitude: 0
+  currentLatitude: 0
+  verticalAngleLimit: 80
+  cameraSpeed: 1
+  anchorDistance: {x: 0, y: 0, z: 0}
+--- !u!1 &1537036760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1537036762}
+  - 114: {fileID: 1537036761}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1537036761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537036760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf789115990bd344c946a58536372c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugInputs: 0
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
+  invertCamera: 0
+  camHorizontalSensitivity: 1
+  camVerticalSensitivity: 1
+  scrollSpeed: 100
+  camLeftRight: Mouse X
+  camUpDown: Mouse Y
+  mouseScroll: Mouse ScrollWheel
+  pause: Cancel
+  interact1Held: 0
+--- !u!4 &1537036762
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537036760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!114 &1692053388 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11421374, guid: 32c209ce01a69044b9a216150b67ea47,

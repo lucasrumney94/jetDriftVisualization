@@ -23,7 +23,7 @@ public static class TLEtoVec3 {
 
         Vector2 elipticalCoordinates = ElipticalCoordinates(eccentricity, meanAnomaly, meanMotion, accuracy);
 
-        Vector3 position = new Vector3(elipticalCoordinates.x, elipticalCoordinates.y, 0f);
+        Vector3 position = new Vector3(elipticalCoordinates.y, 0f, elipticalCoordinates.x);
 
         position = ApplyRotation(position, inclination, rightAscensionOfAscendingNode, arguementOfPeriapsis);
 
@@ -102,10 +102,12 @@ public static class TLEtoVec3 {
 
     private static Vector3 ApplyRotation(Vector3 position, float inclination, float rightAscensionOfAscendingNode, float arguementOfPeriapsis)
     {
-        Vector3 rotation = new Vector3(inclination, 0f, arguementOfPeriapsis);
+        Vector3 rotation = new Vector3(0f, -arguementOfPeriapsis, 0f);
         Vector3 newPos = Rotate(position, rotation);
-        Vector3 secondRotation = new Vector3(0f, 0f, rightAscensionOfAscendingNode);
+        Vector3 secondRotation = new Vector3(0f, 0f, -inclination);
         newPos = Rotate(newPos, secondRotation);
+        Vector3 thirdRotation = new Vector3(0f, -rightAscensionOfAscendingNode, 0f);
+        newPos = Rotate(newPos, thirdRotation);
         return newPos;
     }
 

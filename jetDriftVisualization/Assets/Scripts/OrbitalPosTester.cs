@@ -38,20 +38,25 @@ public class OrbitalPosTester : MonoBehaviour {
     void Update()
     {
         AdvanceTime();
-        if (parser.loadedSatellites)
-        {
-            if(loadedSatellites == false)
-            {
-                LoadSatellites();
-            }
-            MoveSatellites();
-        }
+        CheckSatellites();
         //double epoch = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
     }
 
     private void AdvanceTime()
     {
         readingTime = startTime.AddSeconds((double)(Time.time * timeScale));
+    }
+
+    private void CheckSatellites()
+    {
+        if (parser.loadedSatellites)
+        {
+            if (loadedSatellites == false)
+            {
+                LoadSatellites();
+            }
+            MoveSatellites();
+        }
     }
 
     private void LoadSatellites()
@@ -81,21 +86,24 @@ public class OrbitalPosTester : MonoBehaviour {
         for(int i = 0; i < conicSegments; i++)
         {
             float anomaly = (i * 2f * Mathf.PI) / (conicSegments);
-            //orbitPositions[i] = TLEtoVec3.Convert(inclination, rightAscensionOfAscendingNode, eccentricity, arguementOfPeriapsis, anomaly, meanMotion, accuracy, inversePositionScale);
+            int tleYear = DateTime.UtcNow.Year % 100;
+            float tleDay = DateTime.UtcNow.DayOfYear + ((float)DateTime.UtcNow.TimeOfDay.TotalSeconds / 86164f);
+            Satellite sat = new Satellite("Test", tleYear, tleDay, inclination, rightAscensionOfAscendingNode, eccentricity, arguementOfPeriapsis, anomaly, meanMotion);
+            orbitPositions[i] = TLEtoVec3.Convert(sat, DateTime.UtcNow, accuracy, inversePositionScale);
         }
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    DrawObjects();
-    //    Gizmos.color = Color.red;
-    //    for (int i = 0; i < orbitPositions.Length; i++)
-    //    {
-    //        //Gizmos.DrawCube(orbitPositions[i], Vector3.one);
-    //        //Gizmos.DrawLine(orbitPositions[i], orbitPositions[i + 1]);
-    //    }
-    //    //Gizmos.DrawLine(orbitPositions[conicSegments - 1], orbitPositions[0]);
-    //    //Gizmos.color = Color.green;
-    //    //Gizmos.DrawLine(orbitPositions[0], Vector3.zero);
-    //}
+    void OnDrawGizmos()
+    {
+        FillPositions();
+        Gizmos.color = Color.red;
+        for (int i = 0; i < orbitPositions.Length - 1; i++)
+        {
+            //Gizmos.DrawCube(orbitPositions[i], Vector3.one);
+            Gizmos.DrawLine(orbitPositions[i], orbitPositions[i + 1]);
+        }
+        Gizmos.DrawLine(orbitPositions[conicSegments - 1], orbitPositions[0]);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(orbitPositions[0], Vector3.zero);
+    }
 }
