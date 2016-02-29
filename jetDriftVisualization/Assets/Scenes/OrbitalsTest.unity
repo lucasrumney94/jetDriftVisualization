@@ -92,6 +92,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11421374, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
+      propertyPath: URLs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 416022, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -123,6 +127,14 @@ Prefab:
     - target: {fileID: 416022, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421374, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
+      propertyPath: URLs.Array.data[1]
+      value: http://celestrak.com/NORAD/elements/cosmos-2251-debris.txt
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421374, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}
+      propertyPath: URLs.Array.data[2]
+      value: http://celestrak.com/NORAD/elements/stations.txt
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32c209ce01a69044b9a216150b67ea47, type: 2}

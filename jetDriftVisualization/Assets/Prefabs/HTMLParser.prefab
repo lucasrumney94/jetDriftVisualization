@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5191257, y: 1.1381235, z: 1.9325042}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -41,6 +41,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   URLs:
   - http://celestrak.com/NORAD/elements/weather.txt
+  - http://celestrak.com/NORAD/elements/cosmos-2251-debris.txt
+  - http://celestrak.com/NORAD/elements/stations.txt
+  - http://celestrak.com/NORAD/elements/1999-025.txt
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

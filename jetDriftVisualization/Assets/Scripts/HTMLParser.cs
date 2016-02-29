@@ -8,8 +8,7 @@ using System.Collections.Generic;
 public class HTMLParser : MonoBehaviour {
 
     public bool loadedSatellites = false;
-
-    public string[] URLs = { "http://celestrak.com/NORAD/elements/weather.txt" };
+    public string[] URLs = { "http://celestrak.com/NORAD/elements/weather.txt" , "http://celestrak.com/NORAD/elements/cosmos-2251-debris.txt", "http://celestrak.com/NORAD/elements/stations.txt","http://celestrak.com/NORAD/elements/1999-025.txt" };
     public List<Satellite> Satellites = new List<Satellite>();
 
     private WWW www;
