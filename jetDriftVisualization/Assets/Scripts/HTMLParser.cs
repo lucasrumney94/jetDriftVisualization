@@ -53,8 +53,8 @@ public class HTMLParser : MonoBehaviour {
                 Satellites.Add(new Satellite(Name, EpochYear, EpochDay, Inclination, RightAscensionOfTheAscendingNode, Eccentricity, ArgumentOfPeriapsis, MeanAnomaly, MeanMotion));
 
             }
-            loadedSatellites = true;
         }
+        loadedSatellites = true;
 
         //foreach (Satellite sputnik in Satellites)
         //{

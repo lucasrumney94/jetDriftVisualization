@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b8030a315a816448904cd8e62fa05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inversePositionScale: 1000000
+  inversePositionScale: 100000
   timeScale: 3600
   inclination: 0
   rightAscensionOfAscendingNode: 0
