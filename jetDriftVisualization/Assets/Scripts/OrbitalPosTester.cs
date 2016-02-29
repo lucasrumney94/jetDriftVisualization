@@ -48,5 +48,7 @@ public class OrbitalPosTester : MonoBehaviour {
             Gizmos.DrawLine(orbitPositions[i], orbitPositions[i + 1]);
         }
         Gizmos.DrawLine(orbitPositions[conicSegments - 1], orbitPositions[0]);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(orbitPositions[0], Vector3.zero);
     }
 }

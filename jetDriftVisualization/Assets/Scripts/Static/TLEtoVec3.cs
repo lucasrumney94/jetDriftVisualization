@@ -71,8 +71,11 @@ public static class TLEtoVec3 {
 
     private static Vector3 ApplyRotation(Vector3 position, float inclination, float rightAscensionOfAscendingNode, float arguementOfPeriapsis)
     {
-        Vector3 rotation = new Vector3(inclination, rightAscensionOfAscendingNode, arguementOfPeriapsis);
-        return Rotate(position, rotation);
+        Vector3 rotation = new Vector3(inclination, 0f, arguementOfPeriapsis);
+        Vector3 newPos = Rotate(position, rotation);
+        Vector3 secondRotation = new Vector3(0f, 0f, rightAscensionOfAscendingNode);
+        newPos = Rotate(newPos, secondRotation);
+        return newPos;
     }
 
     private static Vector3 ApplyInclination(Vector3 position, float inclination)
