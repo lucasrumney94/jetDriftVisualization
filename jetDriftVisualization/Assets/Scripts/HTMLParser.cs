@@ -8,8 +8,8 @@ using System.Collections.Generic;
 public class HTMLParser : MonoBehaviour {
 
     public bool loadedSatellites = false;
-    //public string[] URLs = { "http://celestrak.com/NORAD/elements/weather.txt", "http://celestrak.com/NORAD/elements/cosmos-2251-debris.txt", "http://celestrak.com/NORAD/elements/stations.txt","http://celestrak.com/NORAD/elements/1999-025.txt" };
-    public string[] URLs = { "weather.txt" };
+    public string[] URLs = { "http://celestrak.com/NORAD/elements/weather.txt", "http://celestrak.com/NORAD/elements/cosmos-2251-debris.txt", "http://celestrak.com/NORAD/elements/stations.txt","http://celestrak.com/NORAD/elements/1999-025.txt" };
+    //public string[] URLs = { "weather.txt" };
     public List<Satellite> Satellites = new List<Satellite>();
 
     private WWW www;
@@ -52,7 +52,7 @@ public class HTMLParser : MonoBehaviour {
                 MeanMotion = float.Parse(parseTextNewlined[i + 2].Substring(52, 10));
 
                 Satellites.Add(new Satellite(Name, EpochYear, EpochDay, Inclination, RightAscensionOfTheAscendingNode, Eccentricity, ArgumentOfPeriapsis, MeanAnomaly, MeanMotion));
-
+                Debug.Log("but");
             }
         }
         loadedSatellites = true;
