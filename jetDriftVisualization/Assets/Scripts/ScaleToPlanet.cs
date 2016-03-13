@@ -10,6 +10,6 @@ public class ScaleToPlanet : MonoBehaviour {
     void Update()
     {
         float inverseScale = orbitalStats.inversePositionScale;
-        transform.localScale = Vector3.one * (_RadiusOfEarth / inverseScale) * 2f;
+        transform.localScale = Vector3.one * (_RadiusOfEarth / inverseScale);
     }
 }
