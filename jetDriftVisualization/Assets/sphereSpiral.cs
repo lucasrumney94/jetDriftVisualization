@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq;
 public class sphereSpiral : MonoBehaviour {
 
     
-    public const int numberOfSpheres = 1024;
+    public const int numberOfSpheres = 512;
     public float Speed = 60.0f;
 
     public GameObject spiralSphere;
