@@ -11,7 +11,7 @@
 	{
 		Cull Back
 		Zwrite On
-		Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "Rendertype" = "Transparent"}
+		Tags {"Queue" = "Geometry" "IgnoreProjector" = "True" "Rendertype" = "Transparent"}
 		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass
