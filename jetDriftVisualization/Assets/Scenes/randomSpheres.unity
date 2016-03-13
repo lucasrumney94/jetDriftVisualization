@@ -1252,7 +1252,7 @@ GameObject:
   - 4: {fileID: 433330794}
   - 114: {fileID: 433330793}
   - 114: {fileID: 433330795}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ANCHOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}

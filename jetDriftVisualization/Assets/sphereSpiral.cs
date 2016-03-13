@@ -70,7 +70,8 @@ public class sphereSpiral : MonoBehaviour {
             positions[i] = new Vector3(radius*Mathf.Cos(theta),ys[i],radius*Mathf.Sin(theta));
 
             GameObject temp = GameObject.Instantiate(spiralSphere, positions[i], Quaternion.identity) as GameObject;
-            temp.transform.parent = this.gameObject.transform;
+            temp.transform.SetParent(transform, false);
+            temp.transform.position = transform.TransformPoint(temp.transform.position);
             spheres.Add(temp);
         }
         //Debug.Log(ys.Count);
@@ -118,7 +119,7 @@ public class sphereSpiral : MonoBehaviour {
                 tempPos.x = radius * Mathf.Cos(theta) * waveGen.Samples[i];
                 tempPos.y = ys[i];
                 tempPos.z = radius * Mathf.Sin(theta) * waveGen.Samples[i];
-                spheres[i].transform.position = tempPos;
+                spheres[i].transform.position = transform.TransformPoint(tempPos);
 
                 //spheres[i].transform.position = new Vector3(radius * Mathf.Cos(theta) * waveGen.Samples[i], y, radius * Mathf.Sin(theta) * waveGen.Samples[i]);
             }
