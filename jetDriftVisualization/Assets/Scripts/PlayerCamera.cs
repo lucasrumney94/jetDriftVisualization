@@ -44,7 +44,7 @@ public class PlayerCamera : MonoBehaviour
     {
         OrbitCamera(Mathf.Deg2Rad * cameraDelta.x, Mathf.Deg2Rad * cameraDelta.y);
         targetCameraDistance += cameraDelta.z * Mathf.Log10(targetCameraDistance);
-        targetCameraDistance = Mathf.Clamp(targetCameraDistance, 10f, 1000f);
+        targetCameraDistance = Mathf.Clamp(targetCameraDistance, 100f, 1000f);
     }
 
     /// <summary>

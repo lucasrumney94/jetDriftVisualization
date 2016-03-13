@@ -52,7 +52,6 @@ public class HTMLParser : MonoBehaviour {
                 MeanMotion = float.Parse(parseTextNewlined[i + 2].Substring(52, 10));
 
                 Satellites.Add(new Satellite(Name, EpochYear, EpochDay, Inclination, RightAscensionOfTheAscendingNode, Eccentricity, ArgumentOfPeriapsis, MeanAnomaly, MeanMotion));
-                Debug.Log("but");
             }
         }
         loadedSatellites = true;
