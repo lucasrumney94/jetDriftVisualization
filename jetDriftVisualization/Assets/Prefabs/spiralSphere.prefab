@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 413682}
   - 33: {fileID: 3337132}
   - 23: {fileID: 2353354}
-  - 96: {fileID: 9614644}
+  - 96: {fileID: 9601094}
   m_Layer: 0
   m_Name: spiralSphere
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149448}
   m_Mesh: {fileID: 4300000, guid: 2328aa2361c71457e98e68f4b05f7d9e, type: 2}
---- !u!96 &9614644
+--- !u!96 &9601094
 TrailRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -76,8 +76,8 @@ TrailRenderer:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
@@ -89,26 +89,26 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: 10
-  m_StartWidth: 0.01
-  m_EndWidth: 0.0001
+  m_Time: 5
+  m_StartWidth: 0.05
+  m_EndWidth: 0.05
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
       rgba: 4294967295
     m_Color[1]:
       serializedVersion: 2
-      rgba: 1962934271
+      rgba: 4294967295
     m_Color[2]:
       serializedVersion: 2
-      rgba: 1157627903
+      rgba: 4294967295
     m_Color[3]:
       serializedVersion: 2
-      rgba: 486539263
+      rgba: 4294967295
     m_Color[4]:
       serializedVersion: 2
       rgba: 16777215
-  m_MinVertexDistance: 0.0000001
+  m_MinVertexDistance: 0.1
   m_Autodestruct: 0
 --- !u!1001 &100100000
 Prefab:
@@ -147,7 +147,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_CastShadows
@@ -179,7 +179,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_EndWidth
-      value: 0.0001
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_Color[0].rgba
@@ -203,7 +203,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_StartWidth
-      value: 0.01
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_MinVertexDistance
