@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 413682}
   - 33: {fileID: 3337132}
   - 23: {fileID: 2353354}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: spiralSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,6 +164,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Time
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
