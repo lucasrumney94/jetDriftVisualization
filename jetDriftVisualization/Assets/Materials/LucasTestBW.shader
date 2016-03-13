@@ -1,15 +1,23 @@
 ﻿Shader "LUCASSHADER/LucasTestBW"
 {
-	// no Properties block this time!
-	SubShader
+	Properties
+	{
+		_MinIntensity("MinIntensity", float) = 0.2
+		_MaxIntensity("MaxIntensity", float) = 0.6
+	}
+		// no Properties block this time!
+		SubShader
 	{
 		Pass
 		{
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-					// include file that contains UnityObjectToWorldNormal helper function
+			// include file that contains UnityObjectToWorldNormal helper function
 			#include "UnityCG.cginc"
+
+			float _MinIntensity;
+			float _MaxIntensity;
 
 			struct v2f {
 				// we'll output world space normal as one of regular ("texcoord") interpolators
@@ -36,6 +44,7 @@
 			// and put into red, green, blue components
 			float3 normals = i.worldNormal*0.5 + 0.5;
 			float magnitude = (normals.x + normals.y + normals.z) / 3.0;
+			magnitude = ((_MaxIntensity - _MinIntensity) * magnitude) + _MinIntensity;
 			c.rgb = magnitude;
 			return c;
 			}
