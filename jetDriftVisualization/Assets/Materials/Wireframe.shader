@@ -85,7 +85,7 @@
 					return _Color;
 				}*/
 				float d = min(IN.dist.x, min(IN.dist.y, IN.dist.z));
-				float I = exp2(-4.0 * d * d);
+				float I = exp2(-_Thickness * d * d);
 				return lerp(_Color, _WireColor, I);
 			}
 			ENDCG
