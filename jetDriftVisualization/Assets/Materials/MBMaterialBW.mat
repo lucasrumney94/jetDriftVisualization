@@ -127,6 +127,14 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _MinIntensity
+        second: 0.01
+      data:
+        first:
+          name: _MaxIntensity
+        second: 0.38
     m_Colors:
       data:
         first:
