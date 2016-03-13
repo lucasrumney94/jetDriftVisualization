@@ -1142,15 +1142,15 @@ MonoBehaviour:
   Amplitude: 0.1
   sampleRate: 200
   multiCos: 1
-  mC1Freq: 20
+  mC1Freq: 0.1
   mC1Amplitude: 0.05
-  mc1SR: 250
-  mC2Freq: 57.83
+  mc1SR: 500
+  mC2Freq: 0
   mC2Amplitude: 0.05
-  mc2SR: 250
-  mC3Freq: 90.333
+  mc2SR: 500
+  mC3Freq: 0.00000001
   mC3Amplitude: 0.05
-  mc3SR: 250
+  mc3SR: 500
   pulse: 0
   pulseAmplitude: 0.2
   pulseDecay: 0.999
@@ -1289,8 +1289,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 433330792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39499897, y: -0.5618935, z: 1.57}
-  m_LocalScale: {x: 1, y: 1.72, z: 1}
+  m_LocalPosition: {x: -0.39499897, y: -0.5618935, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1048098944}
   m_RootOrder: 0
@@ -2645,7 +2645,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: f3e4a5a33494d224fa05fd5a274e70bc, type: 2}
+  - {fileID: 2100000, guid: b9b33c984fd88564aaee899b0423198d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
