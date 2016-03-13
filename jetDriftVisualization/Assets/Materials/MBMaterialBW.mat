@@ -134,7 +134,7 @@ Material:
       data:
         first:
           name: _MaxIntensity
-        second: 0.38
+        second: 0.35
     m_Colors:
       data:
         first:
