@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/randomSpheres.unity
   - enabled: 0
     path: Assets/Scenes/gridTestScene.unity
@@ -23,5 +23,5 @@ EditorBuildSettings:
     path: Assets/Scenes/ColorTest.unity
   - enabled: 0
     path: Assets/Scenes/LucasPanelTest.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/OrbitalsTest.unity
