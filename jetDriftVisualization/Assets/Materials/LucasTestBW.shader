@@ -2,11 +2,12 @@
 {
 	Properties
 	{
-		_MinIntensity("MinIntensity", float) = 0.2
-		_MaxIntensity("MaxIntensity", float) = 0.6
+		_MinIntensity("MinIntensity", Range(0, 1)) = 0.2
+		_MaxIntensity("MaxIntensity", Range(0, 1)) = 0.6
+		_Step("Step", int) = 0
 	}
-		// no Properties block this time!
-		SubShader
+	// no Properties block this time!
+	SubShader
 	{
 		Pass
 		{
@@ -18,6 +19,7 @@
 
 			float _MinIntensity;
 			float _MaxIntensity;
+			int _Step;
 
 			struct v2f {
 				// we'll output world space normal as one of regular ("texcoord") interpolators
@@ -44,7 +46,15 @@
 			// and put into red, green, blue components
 			float3 normals = i.worldNormal*0.5 + 0.5;
 			float magnitude = (normals.x + normals.y + normals.z) / 3.0;
-			magnitude = ((_MaxIntensity - _MinIntensity) * magnitude) + _MinIntensity;
+			if (_Step) {
+				float breakpoint = (_MaxIntensity + _MinIntensity) / 2.0;
+				if (magnitude < breakpoint) magnitude = _MinIntensity;
+				else magnitude = _MaxIntensity;
+			}
+			else
+			{
+				magnitude = ((_MaxIntensity - _MinIntensity) * magnitude) + _MinIntensity;
+			}
 			c.rgb = magnitude;
 			return c;
 			}

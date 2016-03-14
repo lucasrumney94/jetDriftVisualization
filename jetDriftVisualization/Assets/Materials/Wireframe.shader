@@ -9,16 +9,16 @@
 
 	SubShader
 	{
-		Cull Back
+		/*Cull Back
 		Zwrite On
 		Tags {"Queue" = "Geometry" "IgnoreProjector" = "True" "Rendertype" = "Transparent"}
-		Blend SrcAlpha OneMinusSrcAlpha
+		Blend SrcAlpha OneMinusSrcAlpha*/
 
 		Pass
 		{
 
 			CGPROGRAM
-			#pragma target 4.0
+			//#pragma target 4.0
 			#pragma vertex vert
 			#pragma geometry geom
 			#pragma fragment frag
